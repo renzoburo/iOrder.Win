@@ -8,7 +8,7 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
     [Table("Orders", Schema = "Order")]
     public partial class Order
     {
-        private readonly ObservableListSource<OrderDetail> orderDetails = new ObservableListSource<OrderDetail>();
+        private ObservableListSource<OrderDetail> orderDetails;
 
         public Order()
         {
@@ -24,6 +24,10 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
         [Required]
         public DateTime OrderDate { get; set; }
 
-        public virtual ObservableListSource<OrderDetail> OrderDetails => orderDetails;
+        public virtual ObservableListSource<OrderDetail> OrderDetails
+        {
+            get => orderDetails ?? (orderDetails = new ObservableListSource<OrderDetail>());
+            set => orderDetails = value;
+        }
     }
 }
