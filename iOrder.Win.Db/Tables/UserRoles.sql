@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[UserRoles]
+(
+  UserRoleID INT NOT NULL IDENTITY(1,1),
+  UserID INT NOT NULL,
+  RoleID INT NOT NULL,
+  CreatedBy INT NOT NULL,
+  CreateDate DATE NOT NULL,
+  ModifiedBy INT NOT NULL,
+  ModifiedDate DATE NOT NULL,
+  CONSTRAINT PK_UserRoles PRIMARY KEY (UserRoleID) WITH (IGNORE_DUP_KEY = OFF),
+  CONSTRAINT FK_Users_UserRoles_UserID FOREIGN KEY (UserID) REFERENCES Users(UserID),
+  CONSTRAINT FK_Roles_UserRoles_RoleID FOREIGN KEY (RoleID) REFERENCES Roles(RoleID),
+  CONSTRAINT FK_Users_UserRoles_CreatedBy FOREIGN KEY (CreatedBy) REFERENCES Users(UserID),
+  CONSTRAINT FK_Users_UserRoles_ModifiedBy FOREIGN KEY (ModifiedBy) REFERENCES Users(UserID)
+)

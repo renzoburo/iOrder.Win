@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[Users]
+(
+  UserID INT NOT NULL IDENTITY(1,1),
+  Username VARCHAR(64) NOT NULL,
+  Password VARCHAR(64) NOT NULL,
+  EmailAddress VARCHAR(512) NOT NULL,
+  FullName VARCHAR(512) NOT NULL,
+  CreatedBy INT NOT NULL,
+  CreateDate DATE NOT NULL,
+  ModifiedBy INT NOT NULL,
+  ModifiedDate DATE NOT NULL,
+  CONSTRAINT PK_Users PRIMARY KEY (UserID) WITH (IGNORE_DUP_KEY = OFF),
+  CONSTRAINT UQ_Users_Username UNIQUE (Username) WITH (IGNORE_DUP_KEY = OFF)
+)

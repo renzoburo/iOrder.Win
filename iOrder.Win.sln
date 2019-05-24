@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOrder.Win", "iOrder.Win\iOrder.Win.csproj", "{4D0BB2E4-9FA6-4B97-A124-C8B34C35C298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOrder.Win.DbAccess", "iOrder.Win.DbAccess\iOrder.Win.DbAccess.csproj", "{C1ABB511-2903-485D-AFFA-DDB1BE910CDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4D0BB2E4-9FA6-4B97-A124-C8B34C35C298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D0BB2E4-9FA6-4B97-A124-C8B34C35C298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D0BB2E4-9FA6-4B97-A124-C8B34C35C298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1ABB511-2903-485D-AFFA-DDB1BE910CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1ABB511-2903-485D-AFFA-DDB1BE910CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1ABB511-2903-485D-AFFA-DDB1BE910CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1ABB511-2903-485D-AFFA-DDB1BE910CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
