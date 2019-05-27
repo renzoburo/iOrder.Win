@@ -32,8 +32,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
             this.productBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
@@ -58,8 +57,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productDataGridViewSupplierColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingNavigator)).BeginInit();
             this.productBindingNavigator.SuspendLayout();
@@ -130,7 +127,7 @@
             // 
             // productBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(Product);
+            this.productBindingSource.DataSource = typeof(iOrder.Win.DbAccess.Contexts.iOrder.Product);
             // 
             // bindingNavigatorCountItem
             // 
@@ -227,9 +224,7 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.productDataGridViewSupplierColumn,
-            this.dataGridViewTextBoxColumn8});
+            this.dataGridViewTextBoxColumn6});
             this.productDataGridView.DataSource = this.productBindingSource;
             this.productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.productDataGridView.Location = new System.Drawing.Point(0, 84);
@@ -240,7 +235,7 @@
             // 
             // supplierBindingSource
             // 
-            this.supplierBindingSource.DataSource = typeof(Supplier);
+            this.supplierBindingSource.DataSource = typeof(iOrder.Win.DbAccess.Contexts.iOrder.Supplier);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -276,32 +271,11 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Price";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn6.HeaderText = "Price";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // productDataGridViewSupplierColumn
-            // 
-            this.productDataGridViewSupplierColumn.DataPropertyName = "SupplierID";
-            this.productDataGridViewSupplierColumn.DataSource = this.supplierBindingSource;
-            dataGridViewCellStyle4.NullValue = null;
-            this.productDataGridViewSupplierColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.productDataGridViewSupplierColumn.DisplayMember = "SupplierName";
-            this.productDataGridViewSupplierColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.productDataGridViewSupplierColumn.HeaderText = "SupplierID";
-            this.productDataGridViewSupplierColumn.Name = "productDataGridViewSupplierColumn";
-            this.productDataGridViewSupplierColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.productDataGridViewSupplierColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.productDataGridViewSupplierColumn.ValueMember = "SupplierID";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Supplier";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Supplier";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Visible = false;
             // 
             // FrmProducts
             // 
@@ -354,7 +328,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewComboBoxColumn productDataGridViewSupplierColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
     }
 }

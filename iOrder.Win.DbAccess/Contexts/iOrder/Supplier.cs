@@ -7,7 +7,7 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
     [Table("Suppliers", Schema = "Fulfillment")]
     public partial class Supplier
     {
-        private readonly ObservableListSource<Product> products = new ObservableListSource<Product>();
+        private ObservableListSource<Order> orders = new ObservableListSource<Order>();
 
         public int SupplierID { get; set; }
 
@@ -22,6 +22,10 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
         [StringLength(512)]
         public string SupplierDescription { get; set; }
 
-        public virtual ObservableListSource<Product> Products => products;
+        public virtual ObservableListSource<Order> Orders
+        {
+            get => orders ?? (orders = new ObservableListSource<Order>());
+            set => orders = value;
+        }
     }
 }

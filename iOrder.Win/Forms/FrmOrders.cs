@@ -1,5 +1,6 @@
 ﻿namespace iOrder.Win.Forms
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Windows.Forms;
@@ -20,32 +21,35 @@
 
             orderContext.Orders.Load();
             orderContext.Products.Load();
+            orderContext.Suppliers.Load();
 
             orderBindingSource.DataSource = orderContext.Orders.Local.ToBindingList();
 
-            orderDetailDataGridView.DataError += OrderDetailDataGridViewDataError;
+            orderDataGridViewSupplierColumn.DataSource = orderContext.Suppliers.Local.ToBindingList();
             orderDetailDataGridViewProductColumn.DataSource = orderContext.Products.Local.ToBindingList();
-        }
-
-        private void OrderDetailDataGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.ThrowException = false;
         }
 
         private void orderBindingNavigatorSaveItemClick(object sender, System.EventArgs e)
         {
-            Validate();
-
-            foreach (var orderDetail in orderContext.OrderDetails.Local.ToList())
+            try
             {
-                if (orderDetail.Order == null)
-                    orderContext.OrderDetails.Remove(orderDetail);
+                Validate();
+
+                foreach (var orderDetail in orderContext.OrderDetails.Local.ToList())
+                {
+                    if (orderDetail.Order == null)
+                        orderContext.OrderDetails.Remove(orderDetail);
+                }
+
+                orderContext.SaveChanges();
+
+                orderDataGridView.Refresh();
+                orderDetailDataGridView.Refresh();
             }
-
-            orderContext.SaveChanges();
-
-            orderDataGridView.Refresh();
-            orderDetailDataGridView.Refresh();
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FrmOrdersFormClosing(object sender, FormClosingEventArgs e)

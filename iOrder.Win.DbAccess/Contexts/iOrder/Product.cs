@@ -7,7 +7,7 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
     [Table("Products", Schema = "Fulfillment")]
     public partial class Product
     {
-        private readonly ObservableListSource<OrderDetail> orderDetails = new ObservableListSource<OrderDetail>();
+        private ObservableListSource<OrderDetail> orderDetails = new ObservableListSource<OrderDetail>();
 
         public int ProductID { get; set; }
 
@@ -28,11 +28,10 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
         [Column(TypeName = "numeric")]
         public decimal Price { get; set; }
 
-        [Required]
-        public int? SupplierID { get; set; }
-
-        public virtual Supplier Supplier { get; set; }
-
-        public virtual ObservableListSource<OrderDetail> OrderDetails => orderDetails;
+        public virtual ObservableListSource<OrderDetail> OrderDetails
+        {
+            get => orderDetails ?? (orderDetails = new ObservableListSource<OrderDetail>());
+            set => orderDetails = value;
+        }
     }
 }

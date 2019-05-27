@@ -1,5 +1,6 @@
 ﻿namespace iOrder.Win.Forms
 {
+    using System;
     using System.Data.Entity;
     using System.Windows.Forms;
     using DbAccess.Contexts.iOrder;
@@ -18,36 +19,37 @@
             orderContext = new iOrderContext();
 
             orderContext.Products.Load();
-            orderContext.Suppliers.Load();
 
             productDataGridView.DataSource = orderContext.Products.Local.ToBindingList();
-
-            productDataGridView.DataError += ProductDataGridViewDataError;
-            productDataGridViewSupplierColumn.DataSource = orderContext.Suppliers.Local.ToBindingList();
-        }
-
-        private void ProductDataGridViewDataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.ThrowException = false;
         }
 
         private void productDataGridViewCellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var cell = productDataGridView[e.ColumnIndex, e.RowIndex];
 
-            if (cell.OwningColumn.DataPropertyName.Equals("ImageUrl"))
+            try
             {
-                var cellValue = cell.Value?.ToString();
-                using (var openDialog = new OpenFileDialog())
+                if (cell == null || cell.OwningColumn == null)
+                    throw new Exception("Error selecting cell");
+
+                if (cell.OwningColumn.DataPropertyName.Equals("ImageUrl"))
                 {
-                    openDialog.FileName = cellValue;
-                    if (openDialog.ShowDialog() == DialogResult.OK)
+                    var cellValue = cell.Value?.ToString();
+                    using (var openDialog = new OpenFileDialog())
                     {
-                        productDataGridView[e.ColumnIndex, e.RowIndex].Value = openDialog.FileName;
+                        openDialog.FileName = cellValue;
+                        if (openDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            productDataGridView[e.ColumnIndex, e.RowIndex].Value = openDialog.FileName;
+                        }
                     }
                 }
+
             }
-                
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FrmProductsFormClosing(object sender, FormClosingEventArgs e)
@@ -57,11 +59,18 @@
 
         private void productBindingNavigatorSaveItem_Click_1(object sender, System.EventArgs e)
         {
-            Validate();
+            try
+            {
+                Validate();
 
-            orderContext.SaveChanges();
+                orderContext.SaveChanges();
 
-            productDataGridView.Refresh();
+                productDataGridView.Refresh();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

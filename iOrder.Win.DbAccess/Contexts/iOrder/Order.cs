@@ -22,6 +22,11 @@ namespace iOrder.Win.DbAccess.Contexts.iOrder
         public string OrderCode { get; set; }
 
         [Required]
+        public int? SupplierID { get; set; }
+
+        public virtual Supplier Supplier { get; set; }
+
+        [Required]
         public DateTime OrderDate { get; set; }
 
         public virtual ObservableListSource<OrderDetail> OrderDetails

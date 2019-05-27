@@ -1,5 +1,6 @@
 ﻿namespace iOrder.Win.Forms
 {
+    using System;
     using System.Data.Entity;
     using System.Windows.Forms;
     using DbAccess.Contexts.iOrder;
@@ -24,11 +25,18 @@
 
         private void supplierBindingNavigatorSaveItemClick(object sender, System.EventArgs e)
         {
-            Validate();
+            try
+            {
+                Validate();
 
-            orderContext.SaveChanges();
+                orderContext.SaveChanges();
 
-            supplierDataGridView.Refresh();
+                supplierDataGridView.Refresh();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FrmSuppliersFormClosing(object sender, FormClosingEventArgs e)
